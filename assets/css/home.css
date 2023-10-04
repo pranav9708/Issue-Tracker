@@ -1,0 +1,14 @@
+.home {
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+
+#project-link{
+  text-decoration: none;
+  color:black;
+}
