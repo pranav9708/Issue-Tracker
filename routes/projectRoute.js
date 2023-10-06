@@ -6,4 +6,7 @@ router.get('/create',projectController.renderProjectPage);
 router.post('/create-project',projectController.addProject);
 
 
+router.get('/project-details/:projectId', projectController.viewProject);
+router.get('/sort',projectController.sortProject);
+router.post('/star/:projectId', projectController.starProject);
 module.exports=router;
