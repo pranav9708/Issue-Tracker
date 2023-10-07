@@ -1,12 +1,19 @@
+<link rel="stylesheet" href="/css/project.css">
+
 <div class="container mt-5">
     <h1 class="mb-4">Project Details</h1>
 
     <!-- Display Project Title, Description, and Author -->
     <div class="card mb-4">
         <div class="card-body">
-            <h2 class="card-title"><%= project.name %></h2>
-            <p class="card-text"><%= project.description %></p>
-            <p class="card-text">Author: <%= project.author %></p>
+            <h2 class="card-title">
+                <%= project.name %>
+            </h2>
+            <p class="card-text">
+                <%= project.description %>
+            </p>
+            <p class="card-text">Author: <%= project.author %>
+            </p>
         </div>
     </div>
 
@@ -20,20 +27,20 @@
                 <div class="col-md-6">
                     <!-- Filter Dropdown (Example) -->
                     <div class="input-group mb-3">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false">
-                          filter By
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="/project/filter?filterBy=Name">Name</a>
-                          <a class="dropdown-item" href="/project/filter?filterBy=Author">Author</a>
-                          <a class="dropdown-item" href="/project/filter?filterBy=Created Date">Created Date</a>
+                        <input type="text" id="filter-input" class="form-control" placeholder="Enter label">
+                        <div class="input-group-append">
+                            <button id="addItemButton" class="btn btn-primary" onClick="addFilter()">Add</button>
                         </div>
-                      </div>
+                    </div>
+            
+                    <!-- List to Display Items -->
+                    <ul id="filter-list" class="list-group">
+                        <!-- Items will be added here -->
+                    </ul>
                 </div>
                 <div class="col-md-6 text-right">
                     <!-- Create New Button (Example) -->
-                    <a href="#" class="btn btn-success">Create New Issue</a>
+                    <a href="/issue/create" class="btn btn-success">Create New Issue</a>
                 </div>
             </div>
 
@@ -41,13 +48,21 @@
             <ul class="list-group">
                 <% issues.forEach(function(issue) { %>
                     <li class="list-group-item">
-                        <h4><%= issue.title %></h4>
-                        <p><%= issue.description %></p>
-                        <p>Author: <%= issue.author %></p>
-                        <p>Status: <%= issue.status %></p>
+                        <h4>
+                            <%= issue.title %>
+                        </h4>
+                        <p>
+                            <%= issue.description %>
+                        </p>
+                        <p>Author: <%= issue.author %>
+                        </p>
+                        <p>Status: <%= issue.status %>
+                        </p>
                     </li>
-                <% }); %>
+                    <% }); %>
             </ul>
         </div>
     </div>
 </div>
+
+<script src="/js/project.js"></script>

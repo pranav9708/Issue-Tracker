@@ -1,6 +1,10 @@
+function findStarredLength(project){
+    console.log(project);
+    return 2;
+
+}
 
 function redirectToProject(id){
-    console.log("Redirecting to project");
     window.location.href=`/project/project-details/${id}`;
 }
 
@@ -17,7 +21,7 @@ function toggleStar(projectId,event){
         },
     }).then((response)=>response.json())
     .then((data)=>{
-            const starElement=document.getElementById(`star-project-${data._id}`);
+            const starElement=document.getElementsByClassName(`star-project-${data._id}`);
             if(data.starred){
                 starElement.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-star-fill" viewBox="0 0 16 16">

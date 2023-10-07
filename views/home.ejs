@@ -10,7 +10,7 @@
     <div class="col-md-8 col-12">
       <div class="list-group flex-row mb-3">
         <a href="#" id="tab1-link" class="list-group-item list-group-item-action active"
-          onclick="showTab('tab1', 'tab1-link')">All Projects</a>
+          onclick="showTab('tab1', 'tab1-link')">All Projects(<%= projects.length %>)</a>
         <a href="#" id="tab2-link" class="list-group-item list-group-item-action"
           onclick="showTab('tab2', 'tab2-link')">Starred Projects</a>
       </div>
@@ -38,7 +38,7 @@
         <% projects.forEach(function(project) { %>
           <div class="col-md-12 mb-4">
             <div class="col-md-12 mb-4">
-              <div class="card" onclick="redirectToProject('<%= project._id %>')">
+              <div class="card project-card" onclick="redirectToProject('<%= project._id %>')">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
@@ -58,7 +58,7 @@
                           <span><%= project.openIssues %></span>
                         </li>
                         <li class="list-group-item">
-                          <span id="star-project-<%= project._id %>" onclick="toggleStar('<%= project._id %>', event)">
+                          <span class="star-project-<%= project._id %>" onclick="toggleStar('<%= project._id %>', event)">
                             <%if(project.starred) {%>
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -88,7 +88,7 @@
         <% projects.forEach(function(project) { %>
           <% if(project.starred){%>
             <div class="col-md-12 mb-4">
-              <div class="card" id="project-card">
+              <div class="card project-card" onclick="redirectToProject('<%= project._id %>')">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8">
@@ -108,7 +108,7 @@
                           <span><%= project.openIssues %></span>
                         </li>
                         <li class="list-group-item">
-                          <span>
+                          <span class="star-project-<%= project._id %>" onclick="toggleStar('<%= project._id %>', event)">
                             <%if(project.starred) {%>
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-star-fill" viewBox="0 0 16 16">

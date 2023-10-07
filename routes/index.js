@@ -7,5 +7,6 @@ router.get('/',async(req,res)=>{
 })
 router.use('/home',require('./homeRoute'));
 router.use('/project',require('./projectRoute'));
+router.use('/issue',require('./issueRoute'));
 
 module.exports=router;

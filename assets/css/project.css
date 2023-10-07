@@ -1,0 +1,18 @@
+#filter-list{
+    display:flex;
+    padding:2px;
+    flex-direction: row;
+}
+
+#filter-list .list-group-item{
+    border-top-width: 1px;
+    padding:3px 6px;
+    width:fit-content;
+    margin:10px;
+    font-size: larger;
+    border-radius: 2px;
+}
+
+.filter-btn{
+    margin-left: 5px;
+}
