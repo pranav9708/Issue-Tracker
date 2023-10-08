@@ -9,4 +9,7 @@ router.post('/create-project',projectController.addProject);
 router.get('/project-details/:projectId', projectController.viewProject);
 router.get('/sort',projectController.sortProject);
 router.post('/star/:projectId', projectController.starProject);
+
+router.delete('/delete-project/:projectId', projectController.deleteProject);
+
 module.exports=router;

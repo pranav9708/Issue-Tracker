@@ -51,3 +51,18 @@ module.exports.starProject = async(req,res)=>{
     res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+module.exports.deleteProject=async(req,res)=>{
+    try{
+        const projectId=req.params.projectId;
+        const issuesToDelete = await Issue.find({ project: projectId });
+        for(const issue of issuesToDelete){
+            await Issue.findByIdAndDelete(issue._id);
+        }
+        await Project.findByIdAndDelete(projectId);
+        return res.status(200).json({message:"deleted successfully"});
+    }catch(err){
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}

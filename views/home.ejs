@@ -53,8 +53,8 @@
                     <div class="col-md-4">
                       <ul class="list-group">
                         <li class="list-group-item">
-                          Open Issues:
-                          <span><%= project.openIssues %></span>
+                          No of Issues:
+                          <span><%= project.issues.length %></span>
                         </li>
                         <li class="list-group-item">
                           <span class="star-project-<%= project._id %>" onclick="toggleStar('<%= project._id %>', event)">

@@ -81,3 +81,14 @@ function deleteIssue(issueId){
     })
 }
 
+function deleteProject(projectId){
+    fetch(`/project/delete-project/${projectId}`,{
+        method: 'DELETE',
+        headers:{
+            'Content-Type': 'application/json',
+        }
+    }).then(()=>{
+        return window.location.href=`/home`;
+    })
+}
+
