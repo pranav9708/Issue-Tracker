@@ -8,5 +8,7 @@ router.post('/create-issue',issueController.createIssue);
 
 router.post('/updateStatus/:issueId',issueController.updateStatus);
 
+router.delete('/delete-issue/:issueId',issueController.deleteIssue);
+
 
 module.exports=router;

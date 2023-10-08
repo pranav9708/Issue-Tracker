@@ -18,7 +18,6 @@ module.exports.sortProject=async(req,res)=>{
     const sortBy=req.query.sortBy;
     try{
         const projects=await Project.find().sort({[sortBy]:1});
-        console.log(projects);
         return res.render('home',{ projects: projects });
     }catch(err){
         console.error(error);
@@ -30,7 +29,6 @@ module.exports.viewProject=async (req, res) => {
     try {
         const projectId = req.params.projectId;
         const project = await Project.findById(projectId).populate('issues');
-        console.log(project.issues);
         res.render('project-details', { project ,issues:project.issues});
     } catch (error) {
 
@@ -45,7 +43,6 @@ module.exports.starProject = async(req,res)=>{
         if(!project){
             return res.status(404).json({message:"project not found"});
         }
-        console.log(project);
         project.starred=!project.starred;
         await project.save();
         return res.status(200).json(project);

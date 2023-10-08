@@ -50,16 +50,34 @@ function filterResult() {
 
 function updateIssueStatus(issueId){
 
-    
+    const status=document.getElementById('issue-status').value;
+    const requestBody={
+        status:status
+    }
+
     fetch(`/issue/updateStatus/${issueId}`,{
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',
         },
-    }).then((response)=>response.json()).then((projectId)=>{
-        return window.location.href=`/project/project/project-details/${projectId}`;
+        body:JSON.stringify(requestBody)
+    }).then((response)=>response.json())
+    .then((ProjectId)=>{
+        return window.location.href=`/project/project-details/${ProjectId}`;
     })
 
 
+}
+
+function deleteIssue(issueId){
+    fetch(`/issue/delete-issue/${issueId}`,{
+        method: 'DELETE',
+        headers:{
+            'Content-Type': 'application/json',
+        }
+    }).then((response)=>response.json())
+    .then((ProjectId)=>{
+        return window.location.href=`/project/project-details/${ProjectId}`;
+    })
 }
 

@@ -50,6 +50,8 @@ function createIssue() {
     const description = document.getElementById('description').value;
     const author = document.getElementById('author').value;
     const projectId = document.getElementById('project-id').value;
+    const status=document.getElementById('status').value;
+
     const labels = labelResult();
   
     const requestBody = {
@@ -57,6 +59,7 @@ function createIssue() {
       description: description,
       author: author,
       labels: labels,
+      status: status,
       project: projectId
     };
 
