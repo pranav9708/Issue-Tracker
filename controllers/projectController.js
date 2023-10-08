@@ -1,4 +1,5 @@
 const Project=require('../models/Project');
+const Issue=require('../models/Issue');
 
 module.exports.renderProjectPage=(req,res)=>{
     return res.render('project',{error:false});
@@ -28,17 +29,9 @@ module.exports.sortProject=async(req,res)=>{
 module.exports.viewProject=async (req, res) => {
     try {
         const projectId = req.params.projectId;
-        const project = await Project.findById(projectId);
-
-        const issues=[
-            {
-                title: "issue1",
-                description: "this is a new issue",
-                author: "Pavan V",
-                status:"open"
-            }
-        ]
-        res.render('project-details', { project ,issues});
+        const project = await Project.findById(projectId).populate('issues');
+        console.log(project.issues);
+        res.render('project-details', { project ,issues:project.issues});
     } catch (error) {
 
         res.status(404).send('Project not found');

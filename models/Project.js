@@ -18,7 +18,7 @@ const projectSchema=new mongoose.Schema({
         type: Date,
         default:Date.now(),
     },
-    // issues: [{ type: Schema.Types.ObjectId, ref: 'Issue' }],
+    issues: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Issue' }],
     starred:{
         type: Boolean,
         default: false,

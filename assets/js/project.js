@@ -46,3 +46,20 @@ function filterResult() {
 
     console.log(filterArray);
 }
+
+
+function updateIssueStatus(issueId){
+
+    
+    fetch(`/issue/updateStatus/${issueId}`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+    }).then((response)=>response.json()).then((projectId)=>{
+        return window.location.href=`/project/project/project-details/${projectId}`;
+    })
+
+
+}
+

@@ -7,6 +7,7 @@ const db=require('./config/db');
 const bodyParser=require('body-parser');
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.json());
 
 const port=process.env.PORT || 8001;
 

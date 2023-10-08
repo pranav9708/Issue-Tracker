@@ -1,8 +1,3 @@
-function findStarredLength(project){
-    console.log(project);
-    return 2;
-
-}
 
 function redirectToProject(id){
     window.location.href=`/project/project-details/${id}`;

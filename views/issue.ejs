@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/css/issue.css">
+
+<div class="container mt-5">
+    <h2>Create a New Issue</h2>
+      <% if (error) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+    <% } %>
+      <div class="mb-3">
+        <label for="title" class="form-label">Issue Title</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Issue Description</label>
+        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" name="author" required>
+      </div>
+      <div class="mb-3">
+        <label for="label-input" class="form-label">Labels</label>
+        <div class="input-group">
+            
+            <input type="text" id="label-input" class="form-control" placeholder="Enter label">
+            <div class="input-group-append">
+                <button id="addItemButton" class="btn btn-primary" onClick="addLabel()">Add</button>
+            </div>
+        </div>
+        <input type="hidden" id="project-id" value="<%= projectId %>">
+
+
+        <div class="mb-3">
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="open" selected>Open</option>
+                <option value="closed">Closed</option>
+                <option value="in-progress">In-Progress</option>
+            </select>
+        </div>
+        </div>
+
+        <ul id="label-list" class="list-group">
+        </ul>
+
+    </div>
+      <button type="submit" class="btn btn-primary" onclick="createIssue()">Create Issue</button>
+  </div>
+
+  <script src="/js/issue.js"></script>
+  
