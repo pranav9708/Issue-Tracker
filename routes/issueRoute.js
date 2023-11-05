@@ -10,5 +10,8 @@ router.post('/updateStatus/:issueId',issueController.updateStatus);
 
 router.delete('/delete-issue/:issueId',issueController.deleteIssue);
 
+router.post('/comment/:issueId',issueController.addComment);
+
+
 
 module.exports=router;

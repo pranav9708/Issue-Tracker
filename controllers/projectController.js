@@ -29,6 +29,7 @@ module.exports.viewProject=async (req, res) => {
     try {
         const projectId = req.params.projectId;
         const project = await Project.findById(projectId).populate('issues');
+        console.log(project);
         res.render('project-details', { project ,issues:project.issues});
     } catch (error) {
 

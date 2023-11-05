@@ -37,8 +37,10 @@ issueSchema.pre('save', async function (next) {
     try {
         const project = await mongoose.model('Project').findById(Issue.project);
         if (project) {
-            project.issues.push(Issue._id);
-            await project.save();
+            if(!project.issues.includes(Issue._id)){
+                project.issues.push(Issue._id);
+                await project.save();
+            }
         }
         next();
     } catch (error) {

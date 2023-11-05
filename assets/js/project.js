@@ -82,6 +82,8 @@ function deleteIssue(issueId){
 }
 
 function deleteProject(projectId){
+
+    
     fetch(`/project/delete-project/${projectId}`,{
         method: 'DELETE',
         headers:{
@@ -92,3 +94,23 @@ function deleteProject(projectId){
     })
 }
 
+
+function addComment(issueId){
+
+    const commentText=document.getElementById('issue-comment').value;
+
+    const requestBody={
+        commentText:commentText
+    };
+
+    fetch(`/issue/comment/${issueId}`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(requestBody)
+    }).then((response)=>response.json())
+    .then((ProjectId)=>{
+        return window.location.href=`/project/project-details/${ProjectId}`;
+    })
+}
