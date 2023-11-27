@@ -25,18 +25,30 @@ module.exports.sortProject=async(req,res)=>{
     }
 }
 
-module.exports.viewProject=async (req, res) => {
+module.exports.viewProject = async (req, res) => {
     try {
         const projectId = req.params.projectId;
         const project = await Project.findById(projectId).populate('issues');
-        console.log(project);
-        res.render('project-details', { project ,issues:project.issues});
-    } catch (error) {
 
+        let filteredIssues = project.issues;
+        if (req.query.issues) {
+            filteredIssues = JSON.parse(req.query.issues);
+        }
+
+        return res.render('project-details', { project, issues: filteredIssues });
+    } catch (error) {
         res.status(404).send('Project not found');
     }
-}
+};
 
+
+module.exports.filteredProject=async(req,res)=>{
+    try{
+        console.log(req.params);
+    }catch(error){
+
+    }
+}
 module.exports.starProject = async(req,res)=>{
     try{
         const id=req.params.projectId;

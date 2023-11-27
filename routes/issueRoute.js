@@ -12,6 +12,7 @@ router.delete('/delete-issue/:issueId',issueController.deleteIssue);
 
 router.post('/comment/:issueId',issueController.addComment);
 
+router.post('/filter-issue/:projectId',issueController.filterIssue);
 
 
 module.exports=router;

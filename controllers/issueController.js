@@ -60,3 +60,25 @@ module.exports.deleteIssue= async(req,res)=>{
         res.render('home')
     }
 }
+
+
+module.exports.filterIssue = async (req, res) => {
+    try {
+        const projectId = req.params.projectId;
+        const project = await Project.findById(projectId).populate('issues');
+        const { authorName, status, labels } = req.body;
+
+        const filteredIssues = project.issues.filter(issue => {
+            return (
+                (!authorName || issue.author === authorName) &&
+                (!status || issue.status === status) &&
+                (labels.length === 0 || labels.some(label => issue.labels.includes(label)))
+            );
+        });
+
+        res.json(filteredIssues);
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+};

@@ -13,7 +13,7 @@ function addLabel() {
         // Create a button to remove the label item
         const removeButton = document.createElement('button');
         removeButton.className = 'btn btn-danger btn-sm float-end label-btn';
-        removeButton.innerText = 'X';
+        removeButton.innerHTML = 'X';
 
         // Add a click event listener to remove the label item
         removeButton.addEventListener('click', function () {
@@ -38,9 +38,8 @@ function labelResult() {
 
     const labelArray = [];
     labelItems.forEach(function (labelItem) {
-        labelArray.push(labelItem.innerText.replace(/\nX$/, ''));
+        labelArray.push(labelItem.innerText.replace(/X/g, ''));
     });
-
     return labelArray;
 }
 
@@ -77,4 +76,3 @@ function createIssue() {
         console.error('Error:',error);
     })
   }
-  

@@ -51,26 +51,50 @@
             <!-- Filter Dropdown and Create New Button -->
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <!-- Filter Dropdown (Example) -->
-                    <div class="input-group mb-3">
-                        <input type="text" id="filter-input" class="form-control" placeholder="Enter filter text">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter By
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" onClick="addFilter('Title')">Title</a>
-                                <a class="dropdown-item" href="#" onClick="addFilter('Author')">Author</a>
-                                <a class="dropdown-item" href="#" onClick="addFilter('Labels')">Labels</a>
+                    <div id="openFilterModal" class="btn btn-primary" data-project-id="<%= project._id %>">Open Filter</div>
+
+                    <!-- Filter Modal -->
+                    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog"
+                        aria-labelledby="filterModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="filterModalLabel">Filter Issues</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="filterForm">
+                                        <div class="form-group">
+                                            <label for="authorName">Author Name</label>
+                                            <input type="text" class="form-control" name="authorName"
+                                                placeholder="Author Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="labels">Labels</label>
+                                            <input type="text" class="form-control" id="newLabel"
+                                                placeholder="Enter a label">
+                                            <button type="button" id="addLabel" class="btn btn-primary">Add</button>
+                                            <div id="selectedLabels"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status">Status</label>
+                                            <select class="form-control" name="status">
+                                                <option value="">All</option>
+                                                <option value="open">Open</option>
+                                                <option value="closed">Closed</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="filterButton">Filter</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-
-                    <!-- List to Display Items -->
-                    <ul id="filter-list" class="list-group">
-                        <!-- Items will be added here -->
-                    </ul>
                 </div>
                 <div class="col-md-6 text-right">
                     <!-- Create New Button (Example) -->
@@ -80,7 +104,7 @@
 
             <!-- List of Issues -->
             <ul class="list-group">
-                <% issues.map((issue) =>{ %>
+                <% issues.map((issue)=>{ %>
                     <li class="list-group-item white-border">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4>
@@ -107,16 +131,22 @@
                                 onClick="updateIssueStatus('<%= issue._id %>')">Update Status</button>
                         </div>
                         </p>
-                        <p><%issue.labels.map((label)=>{%>
-                            <%=label%>
-                        <%})%></p>
+
+                        <p>
+                            <span>Labels:</span>
+                            <%issue.labels.map((label)=>{%>
+                                <%=label%>
+                                    <%})%>
+                        </p>
                         <ul class="list-group">
-                            <% issue.comments.map((comment) =>{ %>
-                              <li class="list-group-item">
-                                <h2><%= comment %></h2>
-                              </li>
-                            <% }); %>
-                          </ul>
+                            <% issue.comments.reverse().map((comment)=>{ %>
+                                <li class="list-group-item">
+                                    <h2>
+                                        <%= comment %>
+                                    </h2>
+                                </li>
+                                <% }); %>
+                        </ul>
                         <div class="mb-3">
                             <label for="issue-comment" class="form-label">Add Comment</label>
                             <div class="input-group">
@@ -134,3 +164,4 @@
 </div>
 
 <script src="/js/project.js"></script>
+<script src="/js/filter.js"></script>
